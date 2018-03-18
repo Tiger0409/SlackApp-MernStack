@@ -1,0 +1,11 @@
+#tests
+test
+coverage
+demo
+
+#build tools
+
+#linters
+.babelrc
+
+#editor settings

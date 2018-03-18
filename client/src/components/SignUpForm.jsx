@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes} from 'react';
 import { Link } from 'react-router';
 import { Card, CardText } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -39,7 +39,7 @@ const SignUpForm = ({
         <TextField
           floatingLabelText="Sex"
           name="sex"
-          errorText={errors.address}
+          errorText={errors.sex}
           onChange={onChange}
           value={user.sex}
         />

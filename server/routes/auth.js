@@ -15,7 +15,9 @@ function validateSignupForm(payload) {
   const errors = {};
   let isFormValid = true;
   let message = '';
-  
+  var format = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+
+
 
   if (!payload || typeof payload.email !== 'string' || !validator.isEmail(payload.email)) {
     isFormValid = false;
@@ -25,12 +27,28 @@ function validateSignupForm(payload) {
   if (!payload || typeof payload.password !== 'string' || payload.password.trim().length < 6) {
     isFormValid = false;
     errors.password = 'Password must have at least 6 characters.';
-    
+  } 
+
+  if (!format.test(payload.password)){
+    isFormValid = false;
+    errors.password = 'There is no special character.';
   }
+
   if (!payload || typeof payload.name !== 'string' || payload.name.trim().length === 0) {
     isFormValid = false;
     errors.name = 'Please provide your name.';
   }
+
+  if (!payload || typeof payload.address !== 'string' || payload.address.trim().length === 0) {
+    isFormValid = false;
+    errors.address = 'Please provide your address.';
+  }
+  
+  if (!payload || typeof payload.sex !== 'string' || payload.sex.trim().length === 0) {
+    isFormValid = false;
+    errors.sex = 'Please provide your sex.';
+  }
+
 
   if (!isFormValid) {
     message = 'Check the form for errors.';

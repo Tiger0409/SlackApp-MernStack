@@ -43127,6 +43127,7 @@
 	      user: {
 	        email: '',
 	        name: '',
+	        sex: '',
 	        password: '',
 	        address: ''
 
@@ -43314,7 +43315,7 @@
 	        _react2.default.createElement(_TextField2.default, {
 	          floatingLabelText: 'Sex',
 	          name: 'sex',
-	          errorText: errors.address,
+	          errorText: errors.sex,
 	          onChange: onChange,
 	          value: user.sex
 	        })

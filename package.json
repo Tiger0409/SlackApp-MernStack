@@ -16,6 +16,7 @@
   "dependencies": {
     "bcrypt": "^1.0.1",
     "body-parser": "^1.15.2",
+    "bootstrap-react-password-strength": "0.0.1",
     "express": "^4.14.0",
     "jsonwebtoken": "^7.2.1",
     "material-ui": "^0.16.5",
@@ -25,8 +26,11 @@
     "passport-local": "^1.0.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
+    "react-native-password-strength-checker": "^1.0.13",
     "react-router": "^3.0.0",
+    "react-simple-radio-button": "^1.0.14",
     "react-tap-event-plugin": "^2.0.1",
+    "react-ux-password-field": "^0.9.12",
     "validator": "^6.2.0"
   },
   "devDependencies": {

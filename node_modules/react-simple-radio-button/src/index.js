@@ -1,0 +1,1 @@
+module.exports = require('./react-simple-radio-button.js');
