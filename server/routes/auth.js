@@ -29,7 +29,7 @@ function validateSignupForm(payload) {
     errors.password = 'Password must have at least 6 characters.';
   } 
 
-  if (!payload  || !format.test(payload.password)){
+  if (!payload  || typeof payload.password !== 'string' || !format.test(payload.password)){
     isFormValid = false;
     errors.password = 'There is no special character.';
   }
@@ -94,7 +94,7 @@ function validateLoginForm(payload) {
   };
 }
 
-router.post('/signup', (req, res, next) => {
+router.post('/signup', (req, res, next) => {console.log(req.body)
   const validationResult = validateSignupForm(req.body);
   if (!validationResult.success) {
     return res.status(400).json({
@@ -168,5 +168,10 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
+router.post('/check',(req,res,next) =>{
+  console.log("req.body");
+  
+
+});
 
 module.exports = router;

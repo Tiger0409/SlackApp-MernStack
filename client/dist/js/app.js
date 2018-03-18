@@ -43136,6 +43136,7 @@
 
 	    _this.processForm = _this.processForm.bind(_this);
 	    _this.changeUser = _this.changeUser.bind(_this);
+	    _this.uservalid = _this.uservalid.bind(_this);
 	    return _this;
 	  }
 
@@ -43212,7 +43213,43 @@
 	        user: user
 	      });
 	    }
+	  }, {
+	    key: 'uservalid',
+	    value: function uservalid(event) {
+	      var _this3 = this;
 
+	      var email = this.state.user.email;
+	      // create an AJAX request
+	      var xhr = new XMLHttpRequest();
+	      xhr.open('post', '/auth/check');
+	      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	      xhr.responseType = 'json';
+	      xhr.addEventListener('load', function () {
+	        if (xhr.status === 200) {
+
+	          _this3.setState({
+	            errors: {}
+	          });
+
+	          // set a message
+	          localStorage.setItem('successMessage', xhr.response.message);
+	          console.log(xhr.response.message);
+	          // make a redirect
+	          // this.context.router.replace('/login');
+	        } else {
+	          // failure
+
+	          var errors = xhr.response.errors ? xhr.response.errors : {};
+	          errors.summary = xhr.response.message;
+
+	          _this3.setState({
+	            errors: errors
+	          });
+	        }
+	      });
+	      xhr.send(email);
+	      // console.log(email)
+	    }
 	    /**
 	     * Render the component.
 	     */
@@ -43223,8 +43260,10 @@
 	      return _react2.default.createElement(_SignUpForm2.default, {
 	        onSubmit: this.processForm,
 	        onChange: this.changeUser,
+	        onuservalid: this.uservalid,
 	        errors: this.state.errors,
 	        user: this.state.user
+
 	      });
 	    }
 	  }]);
@@ -43270,7 +43309,8 @@
 	  var onSubmit = _ref.onSubmit,
 	      onChange = _ref.onChange,
 	      errors = _ref.errors,
-	      user = _ref.user;
+	      user = _ref.user,
+	      onuservalid = _ref.onuservalid;
 	  return _react2.default.createElement(
 	    _Card.Card,
 	    { className: 'container' },
@@ -43330,7 +43370,7 @@
 	          onChange: onChange,
 	          value: user.email
 	        }),
-	        _react2.default.createElement(_RaisedButton2.default, { type: 'submit', label: 'Verify email.', primary: true })
+	        _react2.default.createElement('button', { type: 'button', label: 'Verify email.', name: 'validate', onClick: onuservalid })
 	      ),
 	      _react2.default.createElement(
 	        'div',

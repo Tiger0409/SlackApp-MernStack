@@ -25,6 +25,7 @@ class SignUpPage extends React.Component {
 
     this.processForm = this.processForm.bind(this);
     this.changeUser = this.changeUser.bind(this);
+    this.uservalid = this.uservalid.bind(this);
   }
 
   /**
@@ -91,7 +92,39 @@ class SignUpPage extends React.Component {
       user
     });
   }
+  uservalid(event){
+    const email = this.state.user.email;
+    // create an AJAX request
+    const xhr = new XMLHttpRequest();
+    xhr.open('post', '/auth/check');
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.responseType = 'json';
+    xhr.addEventListener('load', () => {
+      if (xhr.status === 200) {
 
+        this.setState({
+          errors: {}
+        });
+
+        // set a message
+        localStorage.setItem('successMessage', xhr.response.message);
+        console.log(xhr.response.message);
+        // make a redirect
+        // this.context.router.replace('/login');
+      } else {
+        // failure
+
+        const errors = xhr.response.errors ? xhr.response.errors : {};
+        errors.summary = xhr.response.message;
+
+        this.setState({
+          errors
+        });
+      }
+    });
+    xhr.send(email);
+    // console.log(email)
+  }
   /**
    * Render the component.
    */
@@ -100,8 +133,10 @@ class SignUpPage extends React.Component {
       <SignUpForm
         onSubmit={this.processForm}
         onChange={this.changeUser}
+        onuservalid={this.uservalid}
         errors={this.state.errors}
         user={this.state.user}
+        
       />
     );
   }

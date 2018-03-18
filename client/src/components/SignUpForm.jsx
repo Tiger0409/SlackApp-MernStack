@@ -10,6 +10,7 @@ const SignUpForm = ({
   onChange,
   errors,
   user,
+  onuservalid
 }) => (
   <Card className="container">
     <form action="/" onSubmit={onSubmit}>
@@ -53,7 +54,8 @@ const SignUpForm = ({
           onChange={onChange}
           value={user.email}
         />
-         <RaisedButton type="submit" label="Verify email." primary />
+         <button type="button" label="Verify email." name="validate" onClick={onuservalid}  />
+
       </div>
 
       <div className="field-line">
