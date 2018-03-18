@@ -53,6 +53,7 @@ const SignUpForm = ({
           onChange={onChange}
           value={user.email}
         />
+         <RaisedButton type="submit" label="Verify email." primary />
       </div>
 
       <div className="field-line">

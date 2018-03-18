@@ -29,7 +29,7 @@ function validateSignupForm(payload) {
     errors.password = 'Password must have at least 6 characters.';
   } 
 
-  if (!format.test(payload.password)){
+  if (!payload  || !format.test(payload.password)){
     isFormValid = false;
     errors.password = 'There is no special character.';
   }

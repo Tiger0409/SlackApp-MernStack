@@ -43329,7 +43329,8 @@
 	          errorText: errors.email,
 	          onChange: onChange,
 	          value: user.email
-	        })
+	        }),
+	        _react2.default.createElement(_RaisedButton2.default, { type: 'submit', label: 'Verify email.', primary: true })
 	      ),
 	      _react2.default.createElement(
 	        'div',
